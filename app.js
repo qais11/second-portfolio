@@ -88,7 +88,7 @@ var stage = new PIXI.Container();
 //-----------------moveing infos function ---------------
         window.onkeydown = function(e) {
         var key = e.keyCode ? e.keyCode : e.which;
-
+        var flag = true;
         if (key == 39) {
            infos.x -= 10;
            spaceShip.x += 4;
@@ -109,6 +109,18 @@ var stage = new PIXI.Container();
            galaxy.x += 0.1;
            galaxy2.x += 0.1;
            star.x -= 0.41
+        }
+        else if (key == 38) {
+          spaceShip.y -= 7;
+        }
+        if(spaceShip.y > renderer.height / 2 + 240 ){
+          flag = false
+        }
+        if (!flag && key == 40) {
+          spaceShip.y = renderer.height / 2 + 240;
+        }
+        else if (flag && key == 40){
+          spaceShip.y += 7;
         }
         }
 
