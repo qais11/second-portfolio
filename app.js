@@ -15,13 +15,14 @@ var stage = new PIXI.Container();
      .add('spritSheet1' , "./assets/ship_sprite.png")
     .load(setup)
 
-    var spaceShip , idle2 , galaxy , galaxy2 , infos , sideStars;
+    var spaceShip , idle2 , galaxy , galaxy2 , infos , sideStars , blackHole;
 
     function setup(){
 //---------------------- spaceShip animation -----------------//
 
     var rect = new PIXI.Rectangle(0,0,1000,300 );
     var texture = PIXI.loader.resources["spritSheet1"].texture;
+
     texture.frame = rect;
       spaceShip = new PIXI.Sprite(texture);
       spaceShip.anchor.set(0.5);
@@ -63,10 +64,10 @@ var stage = new PIXI.Container();
 //------------- adding personal-infos img --------------
       infos = new PIXI.Sprite.fromImage('./assets/infos.png')
       infos.anchor.set(0.5)
-      infos.x = renderer.width / 2 + 500;
+      infos.x = renderer.width / 2 + 1950;
       infos.y = renderer.height / 2 ;
-      infos.width = 1000;
-      infos.height = 500;
+      infos.width = 2000;
+      infos.height = 600;
 //------------------------------------------------------
 //-----------------adding stars to the left of the page
       sideStars = new PIXI.Sprite.fromImage('./assets/stars.png')
@@ -76,6 +77,14 @@ var stage = new PIXI.Container();
       sideStars.width = 900;
       sideStars.height = 800;
 //-------------------------------------------------------
+//-------------------adding black hole -----------------
+      // blackHole = new PIXI.Sprite.fromImage('./assets/bh.png')
+      // blackHole.anchor.set(0.5);
+      // blackHole.x = renderer.width / 2 - 500;
+      // blackHole.y = renderer.height / 2 - 200 ;
+      // blackHole.width = 500;
+      // blackHole.height = 500;
+//------------------------------------------------------
 //-----------------moveing infos function ---------------
         window.onkeydown = function(e) {
         var key = e.keyCode ? e.keyCode : e.which;
@@ -83,15 +92,21 @@ var stage = new PIXI.Container();
         if (key == 39) {
            infos.x -= 10;
            spaceShip.x += 4;
-           galaxy.x += 0.1;
+           galaxy.x -= 0.1;
            galaxy2.x -= 0.1;
            star.x += 0.41
+           console.log(infos.x);
+           if (infos.x <= -1000) {
+             infos.x = infos.x = renderer.width / 2 + 1950 ;
+             spaceShip.x = renderer.width / 2 - 600;
+
+           }
 
         }
         else if (key == 37) {
            infos.x += 10;
            spaceShip.x -= 4;
-           galaxy.x -= 0.1;
+           galaxy.x += 0.1;
            galaxy2.x += 0.1;
            star.x -= 0.41
         }
@@ -104,9 +119,7 @@ var stage = new PIXI.Container();
 
 
 
-
-
-      stage.addChild( sideStars , galaxy , galaxy2 , spaceShip , infos)
+      stage.addChild(sideStars, galaxy , galaxy2 ,infos  ,spaceShip)
 
   }
   function animationLoop(){
