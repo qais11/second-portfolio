@@ -12,6 +12,6 @@ angular.module('myApp', ['ui.router'])
                 controller:"game-controller"
               })
               $urlRouterProvider
-    .otherwise('/');
+    .otherwise('/game');
 
 });
