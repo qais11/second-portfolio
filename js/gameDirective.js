@@ -5,9 +5,26 @@ angular.module('myApp')
       restrict: 'A'
      ,controller: 'game-controller'
      ,link : (scope ,elm)=>{
+  //------------ setting up HowlerJs (music and effects) ----
+  var sound = new Howl({
+      src: ['../assets/music/music.mp3'],
+      volume: 0.5,
+      });
+      var id = sound.play()
+      sound.loop(true);
 
+      scope.playMusic = function(){
+       sound.play(id)
+      }
+      scope.stopMusic = function(){
+        sound.stop(id)
+    }
+
+
+   //---------------------------------------------------------
 
       scope.play = function(){
+
     //Create the renderer
     var renderer = PIXI.autoDetectRenderer( 1000 , 1000 );
     renderer.view.style.position = "absolute";
@@ -20,6 +37,8 @@ angular.module('myApp')
     //  console.log(gameWrapper);
     //Add the canvas to the HTML document
     elm.append(renderer.view);
+
+
 
     //Create a container object called the `stage`
     var stage = new PIXI.Container();
@@ -45,7 +64,7 @@ angular.module('myApp')
          ,buttonHover
          ,buttonPlay
          ,buttonPlayHover
-         ,buttonStop ;
+         ,buttonStop;
 
          var watcher = false;
          var myIntreval;
@@ -228,12 +247,15 @@ angular.module('myApp')
           this.alpha = 1;
           if (this.texture == buttonPlay) {
             this.texture = buttonStop;
-            console.log('music stopped');
+            scope.playMusic()
+            console.log('music started');
           }
           else {
               this.texture = buttonPlay
-              console.log('music started');
+              scope.stopMusic()
+              console.log('music stopped');
           }
+
         }
 
         function onButtonPlayOver(){
@@ -253,8 +275,7 @@ angular.module('myApp')
 
 
         //----------------------------------------
-    //----------------------------------------------------------
-    //-----------------moveing infos function ---------------
+        //-----------------moveing infos function ---------------
             window.onkeydown = function(e) {
 
               laser.x = spaceShip.x
@@ -268,11 +289,7 @@ angular.module('myApp')
                star.x -= 0.41
                if (infos.x <= -1000) {
                   infos.x = renderer.width / 2 + 1950 ;
-                 spaceShip.x = renderer.width / 2 - 600;
-
                }
-
-
             }
             else if (key == 37) {
                infos.x += 17;
