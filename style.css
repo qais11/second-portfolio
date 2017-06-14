@@ -134,12 +134,9 @@ span{
   animation: blink 1s infinite;
 }
 
-
-
 @keyframes blink{
   to{opacity: .0;}
 }
-
 
 .about-back-ground{
   width: 100%;

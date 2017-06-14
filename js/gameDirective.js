@@ -10,13 +10,14 @@ angular.module('myApp')
       src: ['../assets/music/music.mp3'],
       volume: 0.5,
       });
-      var id = sound.play()
+  var id = sound.play()
       sound.loop(true);
 
-      scope.playMusic = function(){
-       sound.play(id)
-      }
-      scope.stopMusic = function(){
+  scope.playMusic = function(){
+          sound.play(id)
+        }
+      
+   scope.stopMusic = function(){
         sound.stop(id)
     }
 
