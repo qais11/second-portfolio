@@ -128,7 +128,7 @@ body {
   font-size: 40px;
   font-weight: bolder;
   text-shadow: 0 0 10px #e2232a, 0 0 14px #e2232a, 0 0 18px #e2232a;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   overflow: hidden;
 }
 span{
@@ -158,4 +158,21 @@ span{
     font-size: 18pt;
     font-weight: 400;
   }
+}
+@media (max-width: 765px) {
+  .middle > ul {
+    padding-top: 2px;
+  }
+  .middle > ul > li > a{
+    font-size: 12pt;
+    font-weight: 300;
+  }
+  .welcome-text {
+    margin: 300px auto;
+    text-align: center;
+}
+.welcome-text > p{
+  font-size: 30px;
+  font-weight: bolder;
+}
 }
