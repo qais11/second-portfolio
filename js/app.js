@@ -9,7 +9,7 @@ angular.module('myApp', ['ui.router'])
             .state('game', {
                 url:'/game',
                 templateUrl: "../views/game.html",
-                // controller:"game-controller"
+                controller:"game-controller"
               })
               $urlRouterProvider
     .otherwise('/');
