@@ -1,5 +1,5 @@
 angular.module('myApp', ['ui.router'])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider,$templateCache, $urlRouterProvider) {
         $stateProvider
             .state('welcome', {
                 url:'/',
