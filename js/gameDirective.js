@@ -40,8 +40,13 @@ angular.module('myApp')
          ,moveLaser
          ,generateLaser
          ,button
+         ,button2
          ,buttonHome
-         ,buttonHover ;
+         ,buttonHover
+         ,buttonPlay
+         ,buttonPlayHover
+         ,buttonStop ;
+
          var watcher = false;
          var myIntreval;
 
@@ -74,7 +79,7 @@ angular.module('myApp')
     //---------------------------------------------------
     //---------- adding 1st galaxy img ------------------//
            galaxy = new PIXI.Sprite.fromImage('../assets/galaxy.png')
-           galaxy.x = renderer.width / 2 - 900;
+           galaxy.x = renderer.width / 2 - 1100;
            galaxy.y = renderer.height / 2 - 400;
            galaxy.width = 500;
            galaxy.height = 300;
@@ -82,7 +87,7 @@ angular.module('myApp')
     //------------------adding 2nd galaxy img --------------
           galaxy2 = new PIXI.Sprite.fromImage('../assets/galaxy2.png')
           galaxy2.anchor.set(0.5)
-          galaxy2.x = renderer.width / 2 + 700;
+          galaxy2.x = renderer.width / 2 + 800;
           galaxy2.y = renderer.height / 2 + 300;
           galaxy2.width = 400;
           galaxy2.height = 200;
@@ -107,10 +112,10 @@ angular.module('myApp')
     //------------- adding personal-infos img --------------
           infos = new PIXI.Sprite.fromImage('../assets/infos.png')
           infos.anchor.set(0.5)
-          infos.x = renderer.width / 2 + 2100;
+          infos.x = renderer.width / 2 + 2300;
           infos.y = renderer.height / 2 ;
-          infos.width = 2000;
-          infos.height = 600;
+          infos.width = 2700;
+          infos.height = 700;
     //------------------------------------------------------
     //-----------------adding stars to the left of the page
           sideStars = new PIXI.Sprite.fromImage('../assets/stars.png')
@@ -162,14 +167,15 @@ angular.module('myApp')
      button.buttonMode = true;
      button.interactive = true;
      button.anchor.set(0.5);
-     button.x = renderer.width / 2 - 100 ;
-     button.y = renderer.height / 2 - 450;
+     button.x = renderer.width / 2 - 70 ;
+     button.y = renderer.height / 2 - 400;
      button.width = 100;
      button.height = 100;
 
      button.on('pointerdown', onButtonDown);
      button.on('pointerover', onButtonOver);
      button.on('pointerout', onButtonOut);
+
         //----- button's functions ----- //
         function onButtonDown() {
                 this.isdown = true;
@@ -196,6 +202,58 @@ angular.module('myApp')
 
 
     //------------------------------------------------------
+    //----------------adding play/stop buttons -----------------
+    buttonPlay = PIXI.Texture.fromImage('../assets/play-btn.png');
+    buttonPlayHover = PIXI.Texture.fromImage('../assets/play-btnh.png');
+    buttonStop = PIXI.Texture.fromImage('../assets/stop-btn.png')
+    button2 =  new PIXI.Sprite(buttonPlay);
+    button2.buttonMode = true;
+    button2.interactive = true;
+    button2.anchor.set(0.5);
+    button2.x = renderer.width / 2 + 70 ;
+    button2.y = renderer.height / 2 - 400;
+    button2.width = 120;
+    button2.height = 120;
+
+    button2.on('pointerdown', onButtonPlayDown);
+    button2.on('pointerover', onButtonPlayOver);
+    button2.on('pointerout', onButtonPlayOut);
+
+        //------button2 functions ----------------
+        var self = this;
+        var clicked = true; ;
+
+        function onButtonPlayDown(){
+          this.isdown = true;
+          this.alpha = 1;
+          if (this.texture == buttonPlay) {
+            this.texture = buttonStop;
+            console.log('music stopped');
+          }
+          else {
+              this.texture = buttonPlay
+              console.log('music started');
+          }
+        }
+
+        function onButtonPlayOver(){
+          this.isOver = true;
+              if (this.isdown) {
+                return;
+              }
+              this.texture = buttonPlayHover;
+             }
+        function onButtonPlayOut(){
+          this.isOver = false;
+          if (this.isdown) {
+              return;
+          }
+          this.texture = buttonPlay;
+        }
+
+
+        //----------------------------------------
+    //----------------------------------------------------------
     //-----------------moveing infos function ---------------
             window.onkeydown = function(e) {
 
@@ -254,7 +312,7 @@ angular.module('myApp')
 
 
 
-          stage.addChild(blackHole ,sideStars, galaxy , galaxy2 ,star , moon ,infos , button ,laser  ,spaceShip )
+          stage.addChild(blackHole ,sideStars, galaxy , galaxy2 ,star , moon ,infos , button , button2 ,laser  ,spaceShip )
 
       }
       function animationLoop(){
