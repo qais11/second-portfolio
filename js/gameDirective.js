@@ -61,8 +61,8 @@ angular.module('myApp')
           spaceShip.anchor.set(0.5);
 
         // move the sprite to the center of the screen
-        spaceShip.x = renderer.width / 2 - 600;
-        spaceShip.y = renderer.height / 2 + 240;
+        spaceShip.x = renderer.width / 2 - 400;
+        spaceShip.y = renderer.height / 2 + 200;
         spaceShip.width = 500;
         spaceShip.height = 400;
 
@@ -79,16 +79,16 @@ angular.module('myApp')
     //---------------------------------------------------
     //---------- adding 1st galaxy img ------------------//
            galaxy = new PIXI.Sprite.fromImage('../assets/galaxy.png')
-           galaxy.x = renderer.width / 2 - 1100;
-           galaxy.y = renderer.height / 2 - 400;
-           galaxy.width = 500;
-           galaxy.height = 300;
+           galaxy.x = renderer.width / 2 - 800;
+           galaxy.y = renderer.height / 2 - 360;
+           galaxy.width = 400;
+           galaxy.height = 200;
     //------------------------------------------------------
     //------------------adding 2nd galaxy img --------------
           galaxy2 = new PIXI.Sprite.fromImage('../assets/galaxy2.png')
           galaxy2.anchor.set(0.5)
-          galaxy2.x = renderer.width / 2 + 800;
-          galaxy2.y = renderer.height / 2 + 300;
+          galaxy2.x = renderer.width / 2 + 600;
+          galaxy2.y = renderer.height / 2 + 260;
           galaxy2.width = 400;
           galaxy2.height = 200;
 
@@ -114,8 +114,8 @@ angular.module('myApp')
           infos.anchor.set(0.5)
           infos.x = renderer.width / 2 + 2300;
           infos.y = renderer.height / 2 ;
-          infos.width = 2700;
-          infos.height = 700;
+          infos.width = 2200;
+          infos.height = 500;
     //------------------------------------------------------
     //-----------------adding stars to the left of the page
           sideStars = new PIXI.Sprite.fromImage('../assets/stars.png')
@@ -130,16 +130,16 @@ angular.module('myApp')
           blackHole.anchor.set(0.5);
           blackHole.x = renderer.width / 2 ;
           blackHole.y = renderer.height / 2 ;
-          blackHole.width = 300;
-          blackHole.height = 300;
+          blackHole.width = 200;
+          blackHole.height = 200;
     //------------------------------------------------------
     //---------------adding moon ---------------------------
           moon = new PIXI.Sprite.fromImage('../assets/moon.png')
           moon.anchor.set(0.5);
           moon.x = renderer.width / 2 + 400 ;
           moon.y = renderer.height / 2 - 200 ;
-          moon.width = 400;
-          moon.height = 400;
+          moon.width = 300;
+          moon.height = 300;
     //------------------------------------------------------
     //---------------- creating laser shoots ---------------
 
@@ -168,7 +168,7 @@ angular.module('myApp')
      button.interactive = true;
      button.anchor.set(0.5);
      button.x = renderer.width / 2 - 70 ;
-     button.y = renderer.height / 2 - 400;
+     button.y = renderer.height / 2 - 300;
      button.width = 100;
      button.height = 100;
 
@@ -211,7 +211,7 @@ angular.module('myApp')
     button2.interactive = true;
     button2.anchor.set(0.5);
     button2.x = renderer.width / 2 + 70 ;
-    button2.y = renderer.height / 2 - 400;
+    button2.y = renderer.height / 2 - 300;
     button2.width = 120;
     button2.height = 120;
 
@@ -312,7 +312,7 @@ angular.module('myApp')
 
 
 
-          stage.addChild(blackHole ,sideStars, galaxy , galaxy2 ,star , moon ,infos , button , button2 ,laser  ,spaceShip )
+          stage.addChild(blackHole ,sideStars, galaxy , galaxy2 ,star , moon  , button , button2 ,infos,laser  ,spaceShip )
 
       }
       function animationLoop(){
