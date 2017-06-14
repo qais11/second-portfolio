@@ -4,8 +4,8 @@ angular.module('myApp')
         $window.location.reload();
         $state.go('welcome');
       }
-      $scope.goGame = function(){
-          $window.location.reload();
-          $state.go('game')
-      }
+      // $scope.goGame = function(){
+      //     $window.location.reload();
+      //     $state.go('game')
+      // }
 })
