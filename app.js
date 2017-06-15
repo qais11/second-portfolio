@@ -2,11 +2,11 @@ const express = require('express');
 const {json} = require('body-parser');
 const port = 5000;
 const app = express();
-const config = require('./config.js')
-
-
+const config = require('./config.js');
+const favicon = require('serve-favicon');
 
 app.use(express.static(__dirname + '/public/'))
+app.use(express.static('public'))
 
 app.use(json());
 
