@@ -1,6 +1,6 @@
 const express = require('express');
 const {json} = require('body-parser');
-const port = 3000;
+const port = 5000;
 const app = express();
 const config = require('./config.js')
 
