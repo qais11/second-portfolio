@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public/'))
 app.use(json());
 
 
-app.listen(port , () => {
+app.listen(process.env.PORT || port , () => {
   console.log(`listenin' to prot ${port}`);
 });
 module.exports = app
